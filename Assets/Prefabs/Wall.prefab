@@ -327,3 +327,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 5
   rb: {fileID: 0}
+  prefab: {fileID: 5745577864754043718, guid: 84410df6c75c5d64aa0b1c454b21bc21, type: 3}
