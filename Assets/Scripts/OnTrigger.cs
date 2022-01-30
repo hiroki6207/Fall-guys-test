@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
 
 public class OnTrigger : MonoBehaviour
 {
@@ -18,10 +19,12 @@ public class OnTrigger : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    async private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
+            GameObject.Find("FadeInOutPanel").GetComponent<FadeInOut>().Fadeout();
+            await Task.Delay(3000);
             SceneManager.LoadScene("ResultScene");
         }
     }
