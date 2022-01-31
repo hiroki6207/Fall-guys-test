@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
 
 public class Countdown : MonoBehaviour
 {
@@ -15,7 +17,7 @@ public class Countdown : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    async void Update()
     {
         if(Input.GetMouseButtonDown(0))
         {
@@ -37,7 +39,9 @@ public class Countdown : MonoBehaviour
         timeText.text = countdown.ToString("f1") + "秒";
         if(countdown <= 0)
         {
-            timeText.text = "時間になりました";
+            GameObject.Find("FadeInOutPanel").GetComponent<FadeInOut>().Fadeout();
+            await Task.Delay(3000);
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Threading.Tasks;
 
 [RequireComponent(typeof(Button))]
 public class StartButton : MonoBehaviour
@@ -12,8 +13,10 @@ public class StartButton : MonoBehaviour
     {
         var button = GetComponent<Button>();
         //ボタンを押下した時のリスナーを設定
-        button.onClick.AddListener(() =>
+        button.onClick.AddListener(async () =>
         {
+            GameObject.Find("FadeInOutPanel").GetComponent<FadeInOut>().Fadeout();
+            await Task.Delay(3000);
             //シーン遷移の際にはSceneManagerを使用する
             SceneManager.LoadScene("MainScene");
         });
