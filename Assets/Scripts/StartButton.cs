@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 [RequireComponent(typeof(Button))]
 public class StartButton : MonoBehaviour
 {
+    [SerializeField]private AudioSource buttonSound;
     // Start is called before the first frame update
     private void Start()
     {
@@ -15,6 +16,8 @@ public class StartButton : MonoBehaviour
         //ボタンを押下した時のリスナーを設定
         button.onClick.AddListener(async () =>
         {
+            buttonSound.pitch = Random.Range(0.7f, 1.3f);
+            buttonSound.Play();
             GameObject.Find("FadeInOutPanel").GetComponent<FadeInOut>().Fadeout();
             await Task.Delay(3000);
             //シーン遷移の際にはSceneManagerを使用する
